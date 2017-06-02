@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Let's Eat | Food, Nightlife, Etc.</title>
+    <meta name="description" content="Personal recomendations for places to eat">
+    <meta name="keywords" content="food, places, friends, drinks, nightlife">
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/imagehover.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+    <!--Navigation bar-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/LetsEat-logo.png') }}" height="40px"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#feature">Acerca</a></li>
+          <li><a href="#organisations">Compañías</a></li>
+            {% if session.username %}
+            <li><a href="{{ url_for('profile', username=session.username) }}">Bienvenido, {{ session.username }}</a></li>
+            {% endif %}
+            {% if not session.username %}
+          <li class="btn-enter"><a href="{{ url_for('login') }}"  data-toggle="modal">Entrar</a></li>
+          <li class="btn-trial"><a href="{{ url_for('register') }}" data-toggle="modal">Registrarse</a></li>
+            {% else %}
+            <li class="btn-trial"><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% endif %}
+        </ul>
+        </div>
+      </div>
+    </nav>
+    <!--/ Navigation bar-->
+    <!--Banner-->
+
+    <div class="banner">
+      <div class="bg-color">
+        <div class="container">
+         <div class="search-bar">
+          <div class="row">
+            <div class="banner-text text-center">
+                <img src="{{ url_for('static', filename='img/letseat-white.png') }}" height="75px">
+              <br>
+              <div class="intro-para text-center quote">
+                <p class="big-text">Encuentra las mejores rese&ntilde;as de comida especialmente para ti.</p>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="block-content">
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+    <!--/ Banner-->
+    <!--Footer-->
+    <footer id="footer" class="footer">
+      <div class="container text-center">
+       <h4>Descubre lugares que tus amigos aman.</h4><br><br>
+       <p>Acerca&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Blog&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Compa&ntilde;&iacute;as&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ciudades&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Desarrolladores&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ayuda&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Trabajos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Privacidad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T&eacute;rminos   </p>
+        ©2017 Let's Eat. Todos los derechos reservados.
+      </div>
+    </footer>
+    <!--/ Footer-->
+
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
+  </body>
+</html>
